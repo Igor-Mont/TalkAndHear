@@ -14,7 +14,7 @@ body {
 
 .container {
   background-color: rgb(219, 180, 255);
-  width: 200px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   border-radius: 16px 16px 0 0;
@@ -41,4 +41,13 @@ button {
   justify-content: center;
   align-items: center;
   gap: 8px;
+  background-color: rgb(184, 137, 224);
+  border: none;
+  border-radius: 8px;
+  transition: all 0.5s;
+}
+
+button:hover {
+  transform: rotate(1deg) scale(1.1);
+  background-color: rgb(179, 97, 255);
 }
