@@ -38,7 +38,9 @@ function createRecognition() {
 // API de voz
 var synth = window.speechSynthesis;
 
-var voiceSelect = document.querySelector('select');
+var langSelect = document.querySelector('.talk-lang');
+
+var voiceSelect = document.querySelector('.select');
 var btnSpeak = document.querySelector('#speak');
 
 // array de vozes/idioma
@@ -47,21 +49,20 @@ var voices = [];
 // fn de seleção de vozes e colocar no options do select
 function populateVoiceList() {
   voices = synth.getVoices()
-
-  console.log(voices)
-
   voices.forEach((v, i) => {
     let option = document.createElement('option');
-    option.textContent = voices[i].name + ' (' + voices[i].lang + ')'
-    if(voices[i].default) option.textContent += ' -- DEFAULT'
+    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+    if(voices[i].default) option.textContent += ' -- DEFAULT';
 
     option.setAttribute('data-lang', voices[i].lang)
-    option.setAttribute('data-name', voices[i].name)
-    voiceSelect.appendChild(option)
+    option.setAttribute('data-name', voices[i].name);
+    voiceSelect.appendChild(option);
+
   })
 }
 
 populateVoiceList();
+
 
 if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = populateVoiceList;
@@ -85,13 +86,12 @@ function speak(){
     }
 
     var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
-
     voices.forEach((v, i) => {
       if(voices[i].name === selectedOption) {
         utterThis.voice = voices[i];
       }
     })
-
+  
     synth.speak(utterThis);
   }
 }
